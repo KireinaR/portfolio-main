@@ -53,10 +53,21 @@ hugo --gc --minify        # outputs to ./public
 ```
 
 ## Deploy to Vercel
-Structure is Vercel's Hugo preset out of the box. Import the repo at
-[vercel.com/new](https://vercel.com/new), set **Framework = Hugo**, add a
-`HUGO_VERSION` env var (currently `0.164.0`), build `hugo --gc --minify`, output
-`public/`. (Deployment not yet wired up.)
+`vercel.json` is already configured: framework `hugo`, build command
+`hugo --gc --minify`, output directory `public/`, and `HUGO_VERSION` pinned to
+`0.164.0` so Vercel's build image matches the version used locally.
+
+Two ways to deploy manually:
+- **CLI**: run `vercel` (preview) or `vercel --prod` (production) from the
+  project root. Requires the [Vercel CLI](https://vercel.com/docs/cli)
+  (`npm i -g vercel`) and being logged in (`vercel login`).
+- **Git-connected**: push this repo to GitHub/GitLab/Bitbucket and import it at
+  [vercel.com/new](https://vercel.com/new). Vercel reads `vercel.json`
+  automatically — no dashboard configuration needed.
+
+`.vercelignore` keeps the scratch/source files (`wanderer*.*`, `asciiw.html`,
+`ascii_convert.py`) and Hugo's local build cache (`public/`, `resources/`) out
+of the deployment upload.
 
 ## Notes
 - Theme respects `prefers-color-scheme` on first visit, then remembers your choice.
