@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume - Ujaan Mukherjee</title>
+  <meta name="description" content="Ujaan Mukherjee's resume." />
+  <meta name="author" content="Ujaan Mukherjee" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var s = localStorage.getItem('theme');
+        var t = s || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
+
+  <header class="runhead">
+    <div class="wrap runhead__inner">
+      <a class="runhead__name" href="index.html">Ujaan Mukherjee</a>
+      <nav class="runnav" aria-label="Sections">
+        <a href="index.html">Front&nbsp;Page</a>
+        <a href="about.html">About</a>
+        <a href="work.html">Works</a>
+        <a href="contact.html">Correspondence</a>
+        <a href="/journal/">Journal</a>
+        <a href="resume.html" class="is-active">Resume</a>
+        <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch theme">
+          <span class="theme-toggle__glyph" aria-hidden="true"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap resume-wrap">
+      <object data="resume.pdf" type="application/pdf" class="resume-embed">
+        <p class="resume-fallback">
+          Your browser can't display the PDF inline.
+          <a href="resume.pdf">Download the resume</a> instead.
+        </p>
+      </object>
+    </div>
+  </main>
+
+  <footer class="colophon">
+    <div class="wrap colophon__inner">
+      <span>&copy; <span id="year">2026</span> Ujaan Mukherjee - Kolkata, India</span>
+      <a href="index.html" class="to-top">Back to the front page &uarr;</a>
+    </div>
+  </footer>
+
+  <script src="lenis.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

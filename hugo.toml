@@ -1,0 +1,35 @@
+baseURL = "https://um7.vercel.app/"
+locale = "en-us"
+title = "Ujaan Mukherjee"
+
+# The hand-built homepage lives at static/index.html — stop Hugo from
+# generating a root index.html that would collide with it.
+disableKinds = ["home", "sitemap", "robotsTXT", "404"]
+
+# Dates
+[frontmatter]
+  date = ["date", "publishDate", "lastmod"]
+
+# Tags only (drop the default "categories" taxonomy)
+[taxonomies]
+  tag = "tags"
+
+[markup.goldmark.renderer]
+  # Allow raw HTML inside posts (figures, spans, etc.)
+  unsafe = true
+
+[markup.highlight]
+  noClasses = false
+  tabWidth = 2
+
+# Section + taxonomy pages also emit RSS (/journal/index.xml, /tags/<t>/index.xml)
+[outputs]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+
+[services.rss]
+  limit = 20
+
+[pagination]
+  pagerSize = 15

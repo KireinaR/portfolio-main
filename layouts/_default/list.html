@@ -1,0 +1,55 @@
+{{ define "main" }}
+<main id="top">
+  <div class="wrap masthead">
+    <div class="dateline">
+      <span>Page IV</span>
+      <span>{{ if eq .Kind "term" }}{{ .Title | upper }}{{ else }}JOURNAL{{ end }}</span>
+      <span><a class="rss-badge" href="{{ with .OutputFormats.Get "rss" }}{{ .RelPermalink }}{{ else }}/journal/index.xml{{ end }}"><span class="rss-badge__dot" aria-hidden="true"></span>RSS</a></span>
+    </div>
+    <h1 class="nameplate nameplate--page">{{ .Title }}</h1>
+    {{ with .Params.standfirst }}<p class="subplate"><span>{{ . }}</span></p>{{ end }}
+  </div>
+
+  <div class="wrap">
+    {{ with .Content }}
+    <section class="pagehead reveal">
+      <div class="prose post-body">{{ . }}</div>
+    </section>
+    {{ end }}
+
+    {{ if eq .Kind "taxonomy" }}
+      <hr class="rule-double" />
+      <section class="reveal">
+        <p class="section-title">Topics</p>
+        <ul class="tag-cloud">
+          {{ range .Pages }}
+          <li><a class="tag" href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="tag-cloud__n">{{ len .Pages }}</span></li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ else }}
+      <section class="reveal">
+        {{ $posts := where .Pages "Type" "journal" }}
+        {{ if not $posts }}{{ $posts = .Pages }}{{ end }}
+        {{ if $posts }}
+        <ol class="journal-list">
+          {{ range $posts.ByDate.Reverse }}
+          <li class="journal-entry">
+            <a class="journal-entry__title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <p class="journal-entry__meta">
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+              <span class="meta-sep">-</span> {{ .ReadingTime }} min read
+              {{ with .Params.tags }}<span class="meta-sep">-</span> {{ range . }}<a class="tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}{{ end }}
+            </p>
+            {{ with .Summary }}<p class="journal-entry__summary">{{ . | plainify | truncate 200 }}</p>{{ end }}
+          </li>
+          {{ end }}
+        </ol>
+        {{ else }}
+        <p class="prose">No journal entries yet. Check back soon.</p>
+        {{ end }}
+      </section>
+    {{ end }}
+  </div>
+</main>
+{{ end }}

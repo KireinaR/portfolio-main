@@ -1,0 +1,21 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ .Title }} - Ujaan Mukherjee</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . | plainify | truncate 155 }}{{ else }}Journal: writing by Ujaan Mukherjee.{{ end }}{{ end }}" />
+<meta name="author" content="Ujaan Mukherjee" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="alternate" type="application/rss+xml" title="Journal - Ujaan Mukherjee" href="/journal/index.xml" />
+<script>
+  (function () {
+    document.documentElement.classList.add('js');
+    try {
+      var s = localStorage.getItem('theme');
+      var t = s || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+  })();
+</script>
+<link rel="stylesheet" href="/styles.css" />

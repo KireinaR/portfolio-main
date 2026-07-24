@@ -1,0 +1,29 @@
+{{ define "main" }}
+<main id="top">
+  <div class="wrap masthead">
+    <div class="dateline">
+      <span><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Monday, 2 January 2006" }}</time></span>
+      <span>{{ .ReadingTime }} min read</span>
+      <span>Journal Entry</span>
+    </div>
+    <h1 class="post-headline">{{ .Title }}</h1>
+    {{ with .Description }}<p class="subplate"><span>{{ . }}</span></p>{{ end }}
+  </div>
+
+  <div class="wrap">
+    <article class="reveal">
+      {{ with .Params.tags }}
+      <p class="post-tags">
+        {{ range . }}<a class="tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}
+      </p>
+      {{ end }}
+
+      <div class="post-body">
+        {{ .Content }}
+      </div>
+
+      <p class="post-back"><a href="/journal/">&larr; All journal entries</a></p>
+    </article>
+  </div>
+</main>
+{{ end }}
