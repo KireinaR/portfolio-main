@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Author - Ujaan Mukherjee</title>
-  <meta name="description" content="Ujaan Mukherjee: what he studies, and the instruments he works with." />
+  <meta name="description" content="Ujaan Mukherjee: what he studies, and his r&eacute;sum&eacute;." />
   <meta name="author" content="Ujaan Mukherjee" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,26 +29,28 @@
   <header class="runhead">
     <div class="wrap runhead__inner">
       <a class="runhead__name" href="index.html">Ujaan Mukherjee</a>
-      <nav class="runnav" aria-label="Sections">
+      <nav class="runnav" aria-label="Sections" id="site-nav">
         <a href="index.html">Front&nbsp;Page</a>
         <a href="about.html" class="is-active">About</a>
         <a href="work.html">Works</a>
-        <a href="contact.html">Correspondence</a>
         <a href="/journal/">Journal</a>
-        <a href="resume.html">Resume</a>
-        <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch theme">
-          <span class="theme-toggle__glyph" aria-hidden="true"></span>
-        </button>
       </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch theme">
+        <span class="theme-toggle__glyph" aria-hidden="true"></span>
+      </button>
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
     </div>
   </header>
 
   <main id="top">
     <div class="wrap masthead">
       <div class="dateline">
-        <span>Page I</span>
-        <span>The Author</span>
-        <span class="js-clock">Indian Standard Time</span>
+        <span class="js-date">Est. MMXXVI</span>
+        <span>Kolkata, India</span>
       </div>
       <h1 class="nameplate nameplate--page">The Author</h1>
       <p class="subplate">
@@ -83,30 +85,31 @@
         </ul>
       </section>
 
-      <div class="instruments">
-        <p class="instruments__title">The Instruments</p>
-        <dl>
-          <div class="row">
-            <dt>Languages</dt>
-            <dd>Python, C++, Java, JavaScript, Bash</dd>
-          </div>
-          <div class="row">
-            <dt>Tools &amp; Frameworks</dt>
-            <dd>Node.js, Express, Hono, Discord.js, Docker, Git, n8n, Vercel, Cloudflare Workers, Arduino, ESP32 / ESP8266, AI-augmented development</dd>
-          </div>
-          <div class="row">
-            <dt>Systems</dt>
-            <dd>Linux (Debian, Ubuntu, Kali, Tails), Raspberry Pi, WSL, VirtualBox</dd>
-          </div>
-        </dl>
-      </div>
+      <section class="reveal" aria-label="Resume">
+        <p class="section-title">R&eacute;sum&eacute;</p>
+        <div class="resume-wrap resume-wrap--inline">
+          <object data="resume.pdf" type="application/pdf" class="resume-embed">
+            <p class="resume-fallback">
+              Your browser can't display the PDF inline.
+              <a href="resume.pdf">Download the resume</a> instead.
+            </p>
+          </object>
+        </div>
+      </section>
     </div>
   </main>
 
   <footer class="colophon">
-    <div class="wrap colophon__inner">
-      <span>&copy; <span id="year">2026</span> Ujaan Mukherjee - Kolkata, India</span>
-      <a href="index.html" class="to-top">Back to the front page &uarr;</a>
+    <div class="wrap">
+      <div class="colophon__contact">
+        <a href="mailto:ujaanm.dev@gmail.com">ujaanm.dev@gmail.com</a>
+        <a href="https://github.com/KireinaR" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/um007/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="colophon__inner">
+        <span>&copy; <span id="year">2026</span> Ujaan Mukherjee</span>
+        <a href="index.html" class="to-top">Back to the front page &uarr;</a>
+      </div>
     </div>
   </footer>
 

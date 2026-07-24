@@ -22,9 +22,12 @@ disableKinds = ["home", "sitemap", "robotsTXT", "404"]
   noClasses = false
   tabWidth = 2
 
-# Section + taxonomy pages also emit RSS (/journal/index.xml, /tags/<t>/index.xml)
+# Section + taxonomy pages also emit RSS (/journal/index.xml, /tags/<t>/index.xml).
+# Sections also emit JSON (/journal/index.json) so the hand-written home page
+# (static/index.html) can fetch the current post list at runtime instead of
+# hard-coding it — the two can never go out of sync again.
 [outputs]
-  section = ["HTML", "RSS"]
+  section = ["HTML", "RSS", "JSON"]
   taxonomy = ["HTML", "RSS"]
   term = ["HTML", "RSS"]
 

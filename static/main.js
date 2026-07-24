@@ -1,6 +1,6 @@
 /* ============================================================
    Ujaan Mukherjee — portfolio interactions
-   Inertia scroll (Lenis), theme toggle, progress bar.
+   Inertia scroll (Lenis), theme toggle, mobile nav, progress bar.
    ============================================================ */
 (function () {
   'use strict';
@@ -42,24 +42,47 @@
     dateEls.forEach(function (el) { el.textContent = formatted; });
   }
 
-  /* ---------- Live IST clock ---------- */
-  var clockEls = document.querySelectorAll('.js-clock');
-  if (clockEls.length) {
-    try {
-      var clockFormatter = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'Asia/Kolkata',
-        hour12: true,
-        hour: '2-digit', minute: '2-digit', second: '2-digit'
+  /* ---------- Journal Entries (home page) ---------- */
+  var journalList = document.getElementById('journal-entries');
+  if (journalList) {
+    var escapeHtml = function (s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
       });
-      var updateClock = function () {
-        var map = {};
-        clockFormatter.formatToParts(new Date()).forEach(function (p) { map[p.type] = p.value; });
-        var text = map.hour + ':' + map.minute + ':' + map.second + ' ' + map.dayPeriod + ' IST';
-        clockEls.forEach(function (el) { el.textContent = text; });
-      };
-      updateClock();
-      setInterval(updateClock, 250);
-    } catch (e) {}
+    };
+    fetch('/journal/index.json', { cache: 'no-store' })
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(res); })
+      .then(function (posts) {
+        if (!posts || !posts.length) return;
+        var html = posts.slice(0, 5).map(function (p, i) {
+          var num = String(i + 1).padStart(2, '0');
+          return '<li><a href="' + p.url + '">' +
+            '<span class="num">' + num + '</span>' +
+            '<span class="name">' + escapeHtml(p.title) + '</span>' +
+            '<span class="desc">' + escapeHtml(p.date) + '</span>' +
+            '</a></li>';
+        }).join('');
+        journalList.innerHTML = html;
+      })
+      .catch(function () { /* keep the static fallback link */ });
+  }
+
+  /* ---------- Mobile nav toggle (hamburger) ---------- */
+  var navToggle = document.querySelector('.nav-toggle');
+  var siteNav = document.getElementById('site-nav');
+  if (navToggle && siteNav) {
+    navToggle.addEventListener('click', function () {
+      var isOpen = siteNav.classList.toggle('is-open');
+      navToggle.classList.toggle('is-active', isOpen);
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    siteNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        siteNav.classList.remove('is-open');
+        navToggle.classList.remove('is-active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 
   /* ---------- Inertia scrolling (Lenis) ---------- */

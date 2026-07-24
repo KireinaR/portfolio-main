@@ -10,7 +10,7 @@
   --bg-soft: #e4ddcd;
   --text: #17130c;        /* warm near-black */
   --muted: #443c2e;       /* strong, low-strain body-secondary */
-  --faint: #6a6150;       /* labels, datelines — readable, not washed out */
+  --faint: #544b3c;       /* labels, datelines — clearly legible, not washed out */
   --rule: #a99d84;        /* hairline ink */
   --rule-strong: #6a6150;
   --ink: #000000;
@@ -30,7 +30,7 @@
   --bg-soft: #0c0c0c;
   --text: #efeae1;
   --muted: #c2bcb0;       /* raised for legibility */
-  --faint: #948d80;
+  --faint: #aca395;       /* clearly legible, not washed out */
   --rule: #33302b;
   --rule-strong: #5a554d;
   --ink: #ffffff;
@@ -136,6 +136,24 @@ html.lenis, html.lenis body { height: auto; }
 }
 [data-theme="dark"] .theme-toggle__glyph { box-shadow: none; background: var(--text); }
 
+/* ---- Mobile nav toggle (hamburger) ---- */
+.nav-toggle {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px;
+  width: 1.85rem; height: 1.85rem;
+  border: 0; background: transparent; cursor: pointer; padding: 0;
+  flex: none;
+}
+.nav-toggle__bar {
+  display: block; width: 1.3rem; height: 1.5px;
+  background: var(--text);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.nav-toggle.is-active .nav-toggle__bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle.is-active .nav-toggle__bar:nth-child(2) { opacity: 0; }
+.nav-toggle.is-active .nav-toggle__bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
 /* ============================================================
    Masthead / nameplate
    ============================================================ */
@@ -200,9 +218,11 @@ html.lenis, html.lenis body { height: auto; }
 .headline--lead { font-size: clamp(2.3rem, 6.5vw, 4rem); }
 .standfirst {
   font-size: clamp(1.12rem, 1rem + 0.7vw, 1.5rem);
-  line-height: 1.5; color: var(--muted); font-style: italic;
+  line-height: 1.5; color: var(--muted);
   margin: 0 0 1.6rem; max-width: 46ch; text-wrap: balance;
 }
+.resume-link { margin: 0 0 1.6rem; font-size: 0.95rem; }
+.resume-link a { color: var(--text); }
 
 .prose p { margin: 0 0 1.15rem; }
 .prose p:last-child { margin-bottom: 0; }
@@ -338,7 +358,7 @@ html.lenis, html.lenis body { height: auto; }
   font-size: 0.72rem; color: var(--faint); letter-spacing: 0.1em;
 }
 .index-list .name { font-weight: 700; font-size: 1.08rem; }
-.index-list .desc { font-size: 0.8rem; color: var(--muted); font-style: italic; white-space: nowrap; }
+.index-list .desc { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
 
 /* ============================================================
    Works — dispatches
@@ -367,7 +387,7 @@ html.lenis, html.lenis body { height: auto; }
 .dispatch__title .arrow { color: var(--faint); font-weight: 400; transition: color 0.3s var(--ease); }
 .dispatch a.dispatch__title:hover .arrow { color: var(--text); }
 .dispatch__desc { margin: 0.55rem 0 0.6rem; color: var(--muted); font-size: 0.96rem; line-height: 1.6; }
-.dispatch__host { font-size: 0.72rem; letter-spacing: 0.05em; color: var(--faint); font-style: italic; }
+.dispatch__host { font-size: 0.72rem; letter-spacing: 0.05em; color: var(--faint); }
 
 /* ============================================================
    Education
@@ -395,49 +415,10 @@ html.lenis, html.lenis body { height: auto; }
   font-weight: 700; font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem);
   line-height: 1.25; margin: 0;
 }
-.school__meta { color: var(--muted); font-size: 0.9rem; margin: 0.25rem 0 0; font-style: italic; }
+.school__meta { color: var(--muted); font-size: 0.9rem; margin: 0.25rem 0 0; }
 .school__years { color: var(--faint); font-size: 0.78rem; letter-spacing: 0.04em; margin: 0.2rem 0 0; }
 
-/* ============================================================
-   Toolkit / instruments box
-   ============================================================ */
-.instruments {
-  border: 1px solid var(--rule-strong);
-  padding: clamp(1.25rem, 3vw, 2rem);
-  margin-top: clamp(2rem, 5vw, 3rem);
-}
-.instruments__title {
-  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--faint); font-weight: 700; text-align: center;
-  margin: 0 0 1.25rem; padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--rule);
-}
-.instruments dl { margin: 0; display: grid; gap: 0.9rem; }
-.instruments .row {
-  display: grid; grid-template-columns: 10rem 1fr; gap: 0.4rem 1.5rem;
-}
-.instruments dt {
-  font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--faint); padding-top: 0.15rem;
-}
-.instruments dd { margin: 0; line-height: 1.6; }
-
-/* ============================================================
-   Correspondence / contact
-   ============================================================ */
-.correspond { margin-top: clamp(1.5rem, 4vw, 2.5rem); max-width: 52ch; }
-.contact-list { list-style: none; margin: 1.75rem 0 0; padding: 0; }
-.contact-list li { border-top: 1px solid var(--rule); }
-.contact-list li:last-child { border-bottom: 1px solid var(--rule); }
-.contact-list a {
-  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
-  padding: 1rem 0; text-decoration: none; color: var(--text);
-}
-.contact-list .label { font-weight: 700; font-size: 1.1rem; }
-.contact-list .val { color: var(--muted); font-style: italic; font-size: 0.92rem; }
-
-/* ---- Footer ---- */
-/* ---- Resume (bare PDF embed, no masthead) ---- */
+/* ---- Resume (PDF embed) ---- */
 .resume-wrap {
   display: flex;
   justify-content: center;
@@ -456,11 +437,22 @@ html.lenis, html.lenis body { height: auto; }
 }
 .resume-fallback a { color: var(--text); }
 
+/* Inline variant: embedded within a content page (About), not a bare full-page view */
+.resume-wrap--inline { padding-block: 0; margin-top: clamp(2rem, 5vw, 3rem); }
+.resume-wrap--inline .resume-embed { height: 120vh; min-height: 840px; max-width: none; }
+
 .colophon {
   margin-top: clamp(2.5rem, 6vw, 4.5rem);
   border-top: 3px double var(--rule-strong);
   padding: clamp(1.75rem, 4vw, 2.75rem) 0 clamp(2.5rem, 5vw, 3.5rem);
 }
+.colophon__contact {
+  display: flex; flex-wrap: wrap;
+  gap: 0.5rem clamp(1.25rem, 4vw, 2rem);
+  font-size: 0.92rem;
+  margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+}
+.colophon__contact a { color: var(--text); }
 .colophon__inner {
   display: flex; align-items: center; justify-content: space-between;
   gap: 1rem; flex-wrap: wrap;
@@ -480,9 +472,25 @@ html.lenis, html.lenis body { height: auto; }
   .front { grid-template-columns: 1fr; }
 }
 @media (max-width: 40rem) {
-  .runnav { gap: 0.7rem; font-size: 0.64rem; letter-spacing: 0.08em; }
   .runhead__name { display: none; }
-  .instruments .row { grid-template-columns: 1fr; gap: 0.15rem; }
+  .nav-toggle { display: flex; }
+  .runnav {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    margin-left: 0;
+    flex-direction: column; align-items: stretch;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s var(--ease);
+  }
+  .runnav.is-open { max-height: 16rem; }
+  .runnav a {
+    padding: 0.9rem var(--pad);
+    border-top: 1px solid var(--rule);
+  }
   .index-list a { grid-template-columns: auto 1fr; }
   .index-list .desc { display: none; }
   .dateline { font-size: 0.6rem; letter-spacing: 0.1em; }
@@ -544,6 +552,15 @@ html.lenis, html.lenis body { height: auto; }
 .post-body blockquote p { margin: 0; }
 .post-body img { margin: 1.8rem auto; border: 1px solid var(--rule-strong); }
 .post-body hr { border: 0; border-top: 3px double var(--rule-strong); margin: 2.5rem 0; }
+
+/* Figure + caption (from markdown image alt text, via render-image hook) */
+.post-body figure { margin: 1.8rem 0; }
+.post-body figure img { margin: 0 auto; border: 1px solid var(--rule-strong); }
+.post-body figcaption {
+  text-align: center; font-style: italic; color: var(--muted);
+  font-size: 0.88rem; line-height: 1.5;
+  margin: 0.7rem auto 0; max-width: 46ch;
+}
 .post-body strong { font-weight: 700; }
 .post-body em { font-style: italic; }
 
@@ -565,6 +582,38 @@ html.lenis, html.lenis body { height: auto; }
 .post-back a { color: var(--muted); text-decoration: none; }
 .post-back a:hover { color: var(--text); }
 
+/* Post layout: main column + sidebar (More from the Journal) */
+.post-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 15rem;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+.post-main { min-width: 0; }
+.post-aside { min-width: 0; }
+
+.post-more__title {
+  font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--faint); font-weight: 700;
+  margin: 0 0 1rem; padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.post-more__list { list-style: none; margin: 0; padding: 0; }
+.post-more__list li { border-top: 1px solid var(--rule); }
+.post-more__list li:first-child { border-top: 0; }
+.post-more__list a {
+  display: block; padding: 0.7rem 0;
+  color: var(--text); text-decoration: none;
+  font-weight: 700; font-size: 0.95rem; line-height: 1.35;
+  transition: color 0.3s var(--ease);
+}
+.post-more__list a:hover { color: var(--muted); }
+.post-more__empty { color: var(--muted); margin: 0; font-size: 0.9rem; }
+
+@media (max-width: 48rem) {
+  .post-layout { grid-template-columns: 1fr; }
+}
+
 /* Journal index list */
 .journal-list { list-style: none; margin: 0; padding: 0; }
 .journal-entry { padding: 1.5rem 0; border-top: 1px solid var(--rule); }
@@ -577,7 +626,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .journal-entry__meta {
   margin: 0.5rem 0 0; font-size: 0.75rem; letter-spacing: 0.03em;
-  color: var(--faint); font-style: italic; line-height: 1.9;
+  color: var(--faint); line-height: 1.9;
 }
 .journal-entry__meta .tag { font-style: normal; font-size: 0.75rem; }
 .journal-entry__meta .meta-sep { color: var(--rule-strong); margin: 0 0.3rem; font-style: normal; }
@@ -589,4 +638,4 @@ html.lenis, html.lenis body { height: auto; }
 /* Tag cloud (/tags/) */
 .tag-cloud { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 0.8rem; }
 .tag-cloud li { display: inline-flex; align-items: baseline; gap: 0.35rem; }
-.tag-cloud__n { font-size: 0.7rem; color: var(--faint); font-style: italic; }
+.tag-cloud__n { font-size: 0.7rem; color: var(--faint); }

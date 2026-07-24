@@ -1,15 +1,16 @@
 # Ujaan Mukherjee — The Wanderer's Dispatch
 
 A minimal, newspaper-set portfolio. The pages are hand-written vanilla HTML/CSS/JS
-(no build step); a **Hugo**-powered blog ("Dispatches") is bolted on for
+(no build step); a **Hugo**-powered blog ("Journal") is bolted on for
 Markdown posts. Baskerville (via Libre Baskerville), light (bone) / dark (true
 black) themes, newspaper columns, and Lenis inertia scrolling.
 
 ## Layout
 ```
 hugo.toml                 # Hugo config
-content/dispatches/       # blog posts (Markdown)  ->  /dispatches/<slug>/
-  _index.md               # the /dispatches/ section page
+content/journal/           # blog posts, as page bundles -> /journal/<slug>/
+  _index.md               # the /journal/ section page
+  <slug>/index.md         # one folder per post; drop that post's images here too
   *.md                    # one file per post
 archetypes/default.md     # front-matter template for `hugo new`
 layouts/                  # Hugo templates for the blog only
@@ -30,12 +31,24 @@ text** — colored `<span>`s in the `ascii.woff2` export font (from `asciiw.html
 on a black plate to mimic the original `wanderer.png`. Not an image.
 
 ## Writing a post
+Each entry is a **page bundle**: a folder holding `index.md` plus any images
+that entry uses. This lets you drop pictures straight into the post's own
+folder instead of managing a separate `static/` images directory.
+
 ```bash
-hugo new content/dispatches/my-post.md   # scaffolds front matter (draft = true)
+hugo new content/journal/my-post   # creates content/journal/my-post/index.md
 ```
+
+Add images into that same `content/journal/my-post/` folder and reference them
+with plain relative Markdown — Hugo copies them alongside the post automatically:
+
+```markdown
+![Alt text](photo.jpg)
+```
+
 Front matter fields: `title`, `date`, `draft`, `description`, `tags = [...]`.
 Set `draft = false` (or use `hugo server -D` to preview drafts). Reading time and
-tag pages (`/tags/<tag>/`) are automatic; RSS is at `/dispatches/index.xml`.
+tag pages (`/tags/<tag>/`) are automatic; RSS is at `/journal/index.xml`.
 Note: posts dated in the future are hidden until their date.
 
 ## Preview locally

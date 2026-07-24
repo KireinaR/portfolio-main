@@ -1,0 +1,8 @@
+{{- $posts := where .Pages "Type" "journal" -}}
+{{- if not $posts }}{{ $posts = .Pages }}{{ end -}}
+[
+{{- range $i, $p := $posts.ByDate.Reverse -}}
+{{- if $i }},{{ end }}
+  {"title": {{ $p.Title | jsonify }}, "url": {{ $p.RelPermalink | jsonify }}, "date": {{ $p.Date.Format "2 Jan 2006" | jsonify }}}
+{{- end }}
+]

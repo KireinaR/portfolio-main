@@ -11,19 +11,35 @@
   </div>
 
   <div class="wrap">
-    <article class="reveal">
-      {{ with .Params.tags }}
-      <p class="post-tags">
-        {{ range . }}<a class="tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}
-      </p>
-      {{ end }}
+    <div class="post-layout">
+      <article class="post-main reveal">
+        {{ with .Params.tags }}
+        <p class="post-tags">
+          {{ range . }}<a class="tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}
+        </p>
+        {{ end }}
 
-      <div class="post-body">
-        {{ .Content }}
-      </div>
+        <div class="post-body">
+          {{ .Content }}
+        </div>
 
-      <p class="post-back"><a href="/journal/">&larr; All journal entries</a></p>
-    </article>
+        <p class="post-back"><a href="/journal/">&larr; All journal entries</a></p>
+      </article>
+
+      {{ $others := where (where .Site.RegularPages "Type" "journal") "RelPermalink" "!=" .RelPermalink }}
+      <aside class="post-aside reveal">
+        <p class="post-more__title">More from the Journal</p>
+        {{ if $others }}
+        <ul class="post-more__list">
+          {{ range $others.ByDate.Reverse }}
+          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+          {{ end }}
+        </ul>
+        {{ else }}
+        <p class="post-more__empty">More on their way.</p>
+        {{ end }}
+      </aside>
+    </div>
   </div>
 </main>
 {{ end }}

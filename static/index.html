@@ -33,17 +33,20 @@
   <header class="runhead">
     <div class="wrap runhead__inner">
       <a class="runhead__name" href="index.html">Ujaan Mukherjee</a>
-      <nav class="runnav" aria-label="Sections">
+      <nav class="runnav" aria-label="Sections" id="site-nav">
         <a href="index.html" class="is-active">Front&nbsp;Page</a>
         <a href="about.html">About</a>
         <a href="work.html">Works</a>
-        <a href="contact.html">Correspondence</a>
         <a href="/journal/">Journal</a>
-        <a href="resume.html">Resume</a>
-        <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch theme">
-          <span class="theme-toggle__glyph" aria-hidden="true"></span>
-        </button>
       </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch theme">
+        <span class="theme-toggle__glyph" aria-hidden="true"></span>
+      </button>
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
     </div>
   </header>
 
@@ -53,7 +56,6 @@
       <div class="dateline">
         <span class="js-date">Est. MMXXVI</span>
         <span>Kolkata, India</span>
-        <span class="js-clock">Indian Standard Time</span>
       </div>
       <h1 class="nameplate nameplate--home">Ujaan Mukherjee</h1>
     </div>
@@ -106,12 +108,11 @@
       <aside class="front__aside reveal">
         <nav class="edition" aria-label="Journal Entries">
           <p class="edition__title">Journal Entries</p>
-          <ul class="index-list">
+          <ul class="index-list" id="journal-entries">
             <li>
-              <a href="/journal/hello-fog/">
-                <span class="num">01</span>
-                <span class="name">Notes on Starting a Journal</span>
-                <span class="desc">15 Jul 2026</span>
+              <a href="/journal/">
+                <span class="name">Browse the Journal</span>
+                <span class="desc">&rarr;</span>
               </a>
             </li>
           </ul>
@@ -124,9 +125,16 @@
   </main>
 
   <footer class="colophon">
-    <div class="wrap colophon__inner">
-      <span>&copy; <span id="year">2026</span> Ujaan Mukherjee - Kolkata, India</span>
-      <a href="#top" class="to-top">Return to the fold &uarr;</a>
+    <div class="wrap">
+      <div class="colophon__contact">
+        <a href="mailto:ujaanm.dev@gmail.com">ujaanm.dev@gmail.com</a>
+        <a href="https://github.com/KireinaR" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/um007/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="colophon__inner">
+        <span>&copy; <span id="year">2026</span> Ujaan Mukherjee</span>
+        <a href="#top" class="to-top">Return to the fold &uarr;</a>
+      </div>
     </div>
   </footer>
 
