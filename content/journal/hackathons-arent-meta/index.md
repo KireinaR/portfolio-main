@@ -1,6 +1,6 @@
 +++
 title = "Hackathons are no longer the Computer Science meta."
-date = 2026-08-02T10:00:00+05:30
+date = 2026-08-02T01:00:00+05:30
 draft = false
 description = "When the AI writes the code, the subscriptions pay the bills, and the slides win the trophy."
 tags = ["AI", "Hackathons", "Developer"]
