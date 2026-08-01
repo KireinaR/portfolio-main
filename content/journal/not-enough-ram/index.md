@@ -7,9 +7,6 @@ tags = ["AI", "GPU", "Hardware"]
 +++
 
 
-**2026/07/24**  
-**Category:** Hardware
-
 There are two kinds of people who preorder things before they exist: gamers and trillion-dollar AI companies. The former get a collector's edition with a plastic figurine. The latter get priority access to HBM wafers that haven't even finished pretending to be silicon.
 
 If you've been wondering why GPUs cost roughly the GDP of a small island nation, the answer isn't just NVIDIA's leather jackets. It's memory.
