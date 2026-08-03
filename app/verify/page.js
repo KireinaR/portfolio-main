@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import VerifyLogin from '@/components/VerifyLogin';
 import VerifyQueue from '@/components/VerifyQueue';
 import { ADMIN_COOKIE_NAME, isValidAdminCookieValue } from '@/lib/adminSession';
-import { getPendingEntries } from '@/lib/guestbook';
+import { getAllEntries } from '@/lib/guestbook';
 
 export const metadata = {
   title: 'Verify - Ujaan Mukherjee',
@@ -19,7 +19,7 @@ export default async function VerifyPage() {
   let dbError = false;
   if (authorized) {
     try {
-      entries = await getPendingEntries();
+      entries = await getAllEntries();
     } catch (err) {
       console.error('Verify queue unavailable', err);
       dbError = true;

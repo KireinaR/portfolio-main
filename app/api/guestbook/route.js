@@ -47,6 +47,7 @@ export async function POST(request) {
     uid: session.user.uid,
     provider: session.user.provider,
     name: session.user.name || 'Anonymous',
+    username: session.user.username || null,
     image: session.user.image,
     message,
   });
