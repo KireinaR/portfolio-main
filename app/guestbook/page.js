@@ -58,7 +58,7 @@ export default async function GuestbookPage() {
           </div>
           <h1 className="nameplate nameplate--page nameplate--compact">Guestbook</h1>
           <p className="subplate">
-            <span>Notes from people who stopped by.</span>
+            <span>Notes from people who stopped by. Write anything you feel. (just don't swear.)</span>
           </p>
         </div>
 
