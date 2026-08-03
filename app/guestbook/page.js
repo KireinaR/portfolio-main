@@ -22,6 +22,15 @@ function GoogleIcon() {
   );
 }
 
+function shuffle(array) {
+  const result = array.slice();
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
 function GithubIcon() {
   return (
     <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
@@ -37,7 +46,7 @@ export default async function GuestbookPage() {
   let remainingMs = 0;
   let dbError = false;
   try {
-    entries = await getApprovedEntries();
+    entries = shuffle(await getApprovedEntries());
     if (session?.user?.uid) {
       remainingMs = await getRateLimitRemaining(session.user.uid);
     }
@@ -68,8 +77,6 @@ export default async function GuestbookPage() {
               <p className="guestbook-wall__empty">The guestbook is temporarily unavailable.</p>
             ) : (
               <>
-                <GuestbookWall entries={entries} />
-
                 <div className="guestbook-auth">
                   {session ? (
                     <>
@@ -99,6 +106,8 @@ export default async function GuestbookPage() {
                     </div>
                   )}
                 </div>
+
+                <GuestbookWall entries={entries} />
               </>
             )}
           </section>

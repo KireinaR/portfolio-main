@@ -1,14 +1,15 @@
 import { formatShortDate } from '@/lib/dates';
 
 const PROVIDER_LABEL = { github: 'GitHub', google: 'Google' };
+const ALIGN = ['flex-start', 'center', 'flex-end'];
 
 function initials(name) {
   return (name || '?').trim().charAt(0).toUpperCase();
 }
 
-// Small deterministic hash (not random) so a card's vertical nudge is stable
-// across renders/reloads, but still varies card-to-card — chaotic to look
-// at, systematic underneath.
+// Small deterministic hash (not random) so a card's placement/treatment is
+// stable across renders/reloads and independent of the shuffled display
+// order — chaotic to look at, systematic underneath.
 function hash(str) {
   let h = 0;
   for (let i = 0; i < str.length; i++) {
@@ -27,10 +28,14 @@ export default function GuestbookWall({ entries }) {
       {entries.map((entry) => {
         const providerLabel = PROVIDER_LABEL[entry.provider] || entry.provider;
         const date = formatShortDate(new Date(entry.createdAt));
-        const nudge = (hash(entry.id) % 13) - 6; // -6px .. 6px
+        const h = hash(entry.id);
+        const align = ALIGN[h % ALIGN.length];
+        const classes = ['guestbook-card'];
+        if (h % 2 === 0) classes.push('guestbook-card--alt');
+        if (h % 4 === 0) classes.push('guestbook-card--featured');
 
         return (
-          <li className="guestbook-card" key={entry.id} style={{ '--nudge': `${nudge}px` }}>
+          <li className={classes.join(' ')} key={entry.id} style={{ alignSelf: align }}>
             <div className="guestbook-card__who">
               {entry.image ? (
                 <img
@@ -53,7 +58,7 @@ export default function GuestbookWall({ entries }) {
                   ) : null}
                 </span>{' '}
                 <span className="guestbook-card__meta">
-                  [{date} {providerLabel}]
+                  [{date} <span className="guestbook-card__provider">{providerLabel}</span>]
                 </span>
               </span>
             </div>
