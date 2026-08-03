@@ -184,6 +184,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .nameplate--home { font-size: clamp(2rem, 7vw, 4.5rem); }
 .nameplate--page { font-size: clamp(1.75rem, 6vw, 3.25rem); }
+.nameplate--compact { font-size: clamp(1.3rem, 3.5vw, 1.9rem); margin-bottom: clamp(0.5rem, 1.5vw, 0.8rem); }
 
 .subplate {
   display: flex; justify-content: center; align-items: center; gap: 0.9rem;
@@ -712,3 +713,166 @@ img { max-width: 100%; height: auto; display: block; }
 .tag-cloud { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 0.8rem; }
 .tag-cloud li { display: inline-flex; align-items: baseline; gap: 0.35rem; }
 .tag-cloud__n { font-size: 0.7rem; color: var(--faint); }
+
+/* ============================================================
+   Guestbook
+   ============================================================ */
+
+/* The wall: a plain horizontal list, hairline separators, round avatars.
+   Deliberately quiet — the notes are the point, not the chrome. */
+.guestbook-wall { list-style: none; margin: clamp(1rem, 3vw, 1.5rem) 0 0; padding: 0; }
+.guestbook-wall__empty { color: var(--muted); margin-top: 1.5rem; }
+
+.guestbook-card {
+  display: flex; align-items: flex-start; gap: 0.65rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--rule);
+}
+.guestbook-card:first-child { border-top: 3px double var(--rule-strong); }
+
+.guestbook-card__avatar {
+  width: 1.7rem; height: 1.7rem; border-radius: 50%;
+  border: 1px solid var(--rule-strong);
+  object-fit: cover; flex: none; margin-top: 0.1rem;
+}
+.guestbook-card__avatar--fallback {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-weight: 700; font-size: 0.8rem;
+  color: var(--faint); background: var(--bg-soft);
+}
+
+.guestbook-card__body { min-width: 0; }
+.guestbook-card__name { font-weight: 700; }
+.guestbook-card__message {
+  margin: 0; color: var(--muted); font-size: 0.85rem;
+  line-height: 1.5; word-break: break-word;
+}
+.guestbook-card__message .guestbook-card__name { color: var(--text); }
+.guestbook-card__meta { margin: 0.15rem 0 0; font-size: 0.66rem; color: var(--faint); }
+.guestbook-card__provider { font-size: 0.85em; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.03em; }
+
+/* Sign in / post: a quiet utility strip below the wall, not the headline act. */
+.guestbook-auth {
+  max-width: 26rem;
+  margin: clamp(2rem, 5vw, 3rem) 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule-strong);
+}
+
+.guestbook-signin { display: flex; flex-direction: column; gap: 0.6rem; }
+.guestbook-signin p {
+  margin: 0; color: var(--faint); font-size: 0.7rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.guestbook-signin__buttons { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.guestbook-signin__button {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  appearance: none; cursor: pointer;
+  border: 1px solid var(--rule); background: transparent;
+  color: var(--muted); font-family: var(--serif); font-size: 0.78rem;
+  padding: 0.38rem 0.7rem;
+  transition: color 0.3s var(--ease), background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.guestbook-signin__button:hover { color: var(--bg); background: var(--text); border-color: var(--text); }
+.guestbook-signin__button svg { width: 1rem; height: 1rem; flex: none; }
+
+.guestbook-form { display: flex; flex-direction: column; gap: 0.5rem; }
+.guestbook-form__label {
+  font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--faint); font-weight: 700;
+}
+.guestbook-form textarea {
+  appearance: none; resize: vertical; min-height: 3.5rem;
+  border: 1px solid var(--rule); background: transparent;
+  color: var(--text); font-family: var(--serif); font-size: 0.88rem;
+  line-height: 1.5; padding: 0.5rem 0.6rem;
+}
+.guestbook-form textarea:focus { outline: none; border-color: var(--text); }
+.guestbook-form textarea::placeholder { color: var(--faint); }
+.guestbook-form__row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.guestbook-form__count { font-size: 0.68rem; color: var(--faint); }
+.guestbook-form__submit {
+  appearance: none; cursor: pointer;
+  border: 1px solid var(--rule-strong); background: transparent;
+  color: var(--text); font-family: var(--serif); font-size: 0.78rem;
+  padding: 0.35rem 0.9rem;
+  transition: color 0.3s var(--ease), background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.guestbook-form__submit:hover:not(:disabled) { color: var(--bg); background: var(--text); border-color: var(--text); }
+.guestbook-form__submit:disabled { opacity: 0.4; cursor: default; }
+.guestbook-form__note { margin: 0; font-size: 0.76rem; color: var(--faint); }
+.guestbook-form__note--ok { color: var(--muted); }
+.guestbook-form__note--error { color: var(--muted); }
+
+.guestbook-signout {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 0.8rem; font-size: 0.7rem; color: var(--faint);
+}
+.guestbook-signout button {
+  appearance: none; cursor: pointer; border: 0; background: none;
+  color: var(--faint); font-family: var(--serif); font-size: 0.7rem;
+  text-decoration: underline; padding: 0;
+  transition: color 0.3s var(--ease);
+}
+.guestbook-signout button:hover { color: var(--text); }
+
+/* ============================================================
+   Verify (moderation queue)
+   ============================================================ */
+.verify-login {
+  display: flex; flex-direction: column; gap: 0.6rem;
+  max-width: 20rem; margin: clamp(2rem, 6vw, 3.5rem) auto 0;
+}
+.verify-login__label {
+  font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--faint); font-weight: 700;
+}
+.verify-login input {
+  appearance: none; border: 0; border-bottom: 1px solid var(--rule);
+  background: transparent; color: var(--text); font-family: var(--serif);
+  font-size: 1rem; padding: 0.3rem 0.1rem;
+}
+.verify-login input:focus { outline: none; border-bottom-color: var(--text); }
+.verify-login button {
+  appearance: none; cursor: pointer; align-self: flex-start;
+  border: 1px solid var(--rule-strong); background: transparent;
+  color: var(--text); font-family: var(--serif); font-size: 0.85rem;
+  padding: 0.4rem 1rem; margin-top: 0.4rem;
+  transition: color 0.3s var(--ease), background-color 0.3s var(--ease);
+}
+.verify-login button:hover:not(:disabled) { color: var(--bg); background: var(--text); }
+.verify-login button:disabled { opacity: 0.4; cursor: default; }
+.verify-login__error { margin: 0; font-size: 0.82rem; color: var(--muted); }
+
+.verify-queue-wrap { margin-top: clamp(1.5rem, 4vw, 2.5rem); }
+.verify-queue__header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; padding-bottom: 0.7rem; border-bottom: 1px solid var(--rule-strong);
+  font-size: 0.78rem; color: var(--faint); text-transform: uppercase; letter-spacing: 0.1em;
+}
+.verify-queue__logout {
+  appearance: none; cursor: pointer; border: 0; background: none;
+  color: var(--faint); font-family: var(--serif); text-decoration: underline;
+  font-size: 0.78rem; text-transform: none; letter-spacing: normal; padding: 0;
+}
+.verify-queue__logout:hover { color: var(--text); }
+.verify-queue__empty { color: var(--muted); margin-top: 1.5rem; }
+
+.verify-queue { list-style: none; margin: 0; padding: 0; }
+.verify-queue__item { padding: 1.1rem 0; border-top: 1px solid var(--rule); }
+.verify-queue__who { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+.verify-queue__avatar { width: 2rem; height: 2rem; border: 1px solid var(--rule-strong); object-fit: cover; }
+.verify-queue__name { margin: 0; font-weight: 700; font-size: 0.92rem; }
+.verify-queue__meta { margin: 0.1rem 0 0; font-size: 0.7rem; color: var(--faint); }
+.verify-queue__message { margin: 0.4rem 0 0.7rem; color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+.verify-queue__actions { display: flex; gap: 0.6rem; }
+.verify-queue__actions button {
+  appearance: none; cursor: pointer;
+  border: 1px solid var(--rule-strong); background: transparent;
+  color: var(--faint); font-family: var(--serif); font-size: 0.78rem;
+  padding: 0.3rem 0.7rem;
+  transition: color 0.3s var(--ease), background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.verify-queue__actions button:hover:not(:disabled) { color: var(--bg); background: var(--text); border-color: var(--text); }
+.verify-queue__actions button:disabled { opacity: 0.4; cursor: default; }
