@@ -73,19 +73,6 @@ img { max-width: 100%; height: auto; display: block; }
   padding-inline: var(--pad);
 }
 
-/* ---- Reading progress ---- */
-.progress {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: 2px; z-index: 60; pointer-events: none;
-  opacity: 0; transition: opacity 0.5s var(--ease);
-}
-.progress.is-visible { opacity: 1; }
-.progress__bar {
-  display: block; height: 100%; width: 100%;
-  background: var(--ink); transform: scaleX(0);
-  transform-origin: 0 50%; will-change: transform;
-}
-
 /* ============================================================
    Running head (sticky utility bar)
    ============================================================ */

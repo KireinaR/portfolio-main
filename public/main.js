@@ -1,6 +1,6 @@
 /* ============================================================
    Ujaan Mukherjee — portfolio interactions
-   Theme toggle, mobile nav, journal entries fetch, progress bar.
+   Theme toggle, mobile nav, journal entries fetch.
    ============================================================ */
 (function () {
   'use strict';
@@ -100,32 +100,4 @@
       history.replaceState(null, '', id);
     });
   });
-
-  /* ---------- Reading progress + sticky header state ---------- */
-  var progress = document.querySelector('.progress');
-  var progressBar = document.querySelector('.progress__bar');
-  var header = document.querySelector('.site-header');
-  var hero = document.getElementById('hero');
-  var ticking = false;
-
-  function updateProgress() {
-    var y = window.scrollY;
-    var docH = document.documentElement.scrollHeight - window.innerHeight;
-    var ratio = docH > 0 ? Math.min(1, Math.max(0, y / docH)) : 0;
-    if (progressBar) progressBar.style.transform = 'scaleX(' + ratio + ')';
-
-    var heroBottom = hero ? hero.offsetTop + hero.offsetHeight - 80 : 400;
-    var past = y > heroBottom;
-    if (progress) progress.classList.toggle('is-visible', past);
-    if (header) header.classList.toggle('is-stuck', y > 8);
-  }
-
-  window.addEventListener('scroll', function () {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(function () { updateProgress(); ticking = false; });
-    }
-  }, { passive: true });
-  window.addEventListener('resize', function () { updateProgress(); });
-  updateProgress();
 })();

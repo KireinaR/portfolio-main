@@ -26,7 +26,6 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body>
-        <div className="progress" aria-hidden="true"><span className="progress__bar"></span></div>
         {children}
         <Script src="/main.js" strategy="afterInteractive" />
       </body>

@@ -31,7 +31,27 @@ export default function AboutPage() {
             </p>
           </section>
 
+          <section className="reveal" aria-label="Experience">
+            <p className="section-title">Experience</p>
+            <ul className="schools">
+              <li className="school">
+                <span className="school__logo">
+                  <img src="/agenscience-logo.jpg" alt="Agenscience.ai logo" />
+                </span>
+                <div className="school__body">
+                  <p className="school__name">Intern, Agenscience.ai</p>
+                  <p className="school__meta">
+                    Designed AI-powered prototypes and multi-agent LLM pipelines for Agenscience&#39;s
+                    decision-intelligence platform, running the full ML lifecycle on client datasets.
+                  </p>
+                  <p className="school__years">June 2026 &ndash; August 2026 &middot; Boston, United States of America</p>
+                </div>
+              </li>
+            </ul>
+          </section>
+
           <section className="reveal" aria-label="Education">
+            <p className="section-title">Education</p>
             <ul className="schools">
               <li className="school">
                 <span className="school__logo">
