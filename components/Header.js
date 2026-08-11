@@ -4,6 +4,7 @@ const LINKS = [
   { key: 'work', href: '/work', label: 'Works' },
   { key: 'journal', href: '/journal', label: 'Journal' },
   { key: 'guestbook', href: '/guestbook', label: 'Guestbook' },
+  { key: 'contact', href: '/contact', label: 'Contact' },
 ];
 
 export default function Header({ active }) {
