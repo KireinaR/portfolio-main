@@ -605,15 +605,7 @@ img { max-width: 100%; height: auto; display: block; }
     overflow: hidden;
     transition: max-height 0.35s var(--ease);
   }
-  .runnav {
-  display: grid;
-  grid-template-rows: 0fr;
-  overflow: hidden;
-  transition: grid-template-rows 0.35s var(--ease);
-  /* remove max-height, keep everything else */
-}
-.runnav > * { min-height: 0; overflow: hidden; } /* not strictly needed for <a>, but harmless */
-.runnav.is-open { grid-template-rows: 1fr; }
+  .runnav.is-open { max-height: 16rem; }
   .runnav a {
     padding: 0.9rem var(--pad);
     border-top: 1px solid var(--rule);
