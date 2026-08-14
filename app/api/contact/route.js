@@ -11,11 +11,16 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // headers or lines into the outgoing email.
 const CONTROL_CHARS_RE = /[\r\n\x00-\x08\x0b\x0c\x0e-\x1f]/;
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'hello@ujaanmukherjee.com';
-// Sender name for the notification that lands in Ujaan's own inbox.
-const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>';
-// Sender name for the courtesy reply that goes back to the visitor.
-const CONFIRM_FROM_EMAIL = process.env.CONTACT_CONFIRM_FROM_EMAIL || "Ujaan's Mailbox <onboarding@resend.dev>";
+const TO_EMAIL =
+  process.env.CONTACT_TO_EMAIL || 'hello@ujaanmukherjee.com';
+
+// Notification sent to you
+const FROM_EMAIL =
+  process.env.CONTACT_FROM_EMAIL || 'Portfolio <hello@ujaanmukherjee.com>';
+
+// Confirmation sent back to the visitor
+const CONFIRM_FROM_EMAIL =
+  process.env.CONTACT_CONFIRM_FROM_EMAIL || "Ujaan's Mailbox <hello@ujaanmukherjee.com>";
 
 const GITHUB_URL = 'https://github.com/KireinaR';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/um007/';
