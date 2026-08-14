@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import CopyEmailButton from '@/components/CopyEmailButton';
+import ContactForm from '@/components/ContactForm';
 import { getGithubProfile } from '@/lib/github';
 
 export const metadata = {
@@ -8,7 +8,6 @@ export const metadata = {
   description: 'Get in touch with Ujaan Mukherjee: email, GitHub, LinkedIn.',
 };
 
-const EMAIL = 'hello@ujaanmukherjee.com';
 const GITHUB_USERNAME = 'KireinaR';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/um007/';
 
@@ -30,64 +29,63 @@ export default async function ContactPage() {
             <span>Kolkata, India</span>
           </div>
           <h1 className="nameplate nameplate--page">Contact</h1>
-          <p className="subplate">
-            <span>Reach out</span>
-          </p>
         </div>
 
         <div className="wrap">
-          <section className="reveal">
-            <ul className="contact-cards">
-              <li className="contact-card">
-                <p className="contact-card__kicker">Email</p>
-                <p className="contact-card__title">{EMAIL}</p>
-                <CopyEmailButton email={EMAIL} />
-              </li>
+          <section className="reveal contact-layout">
+            <ContactForm />
 
-              <li className="contact-card">
-                <p className="contact-card__kicker">GitHub</p>
-                <div className="contact-card__who">
-                  {github?.avatarUrl ? (
-                    <img
-                      className="contact-card__avatar"
-                      src={github.avatarUrl}
-                      alt=""
-                      referrerPolicy="no-referrer"
-                    />
-                  ) : (
-                    <span className="contact-card__avatar contact-card__avatar--fallback" aria-hidden="true">
-                      {initials(GITHUB_USERNAME)}
-                    </span>
-                  )}
-                  <div>
-                    <p className="contact-card__title">{github?.name || GITHUB_USERNAME}</p>
-                    <p className="contact-card__desc">@{GITHUB_USERNAME}</p>
-                  </div>
-                </div>
-                {github?.bio ? <p className="contact-card__desc">{github.bio}</p> : null}
-                <a
-                  className="contact-card__link"
-                  href={github?.htmlUrl || `https://github.com/${GITHUB_USERNAME}`}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  View profile
-                </a>
-              </li>
+            <div>
+              <div className="contact-social">
+                <p className="contact-form__kicker">Elsewhere</p>
 
-              <li className="contact-card">
-                <p className="contact-card__kicker">LinkedIn</p>
-                <p className="contact-card__title">Ujaan Mukherjee</p>
-                <p className="contact-card__desc">Computer Science undergraduate</p>
-                <a className="contact-card__link" href={LINKEDIN_URL} target="_blank" rel="noopener">
-                  View profile
-                </a>
-              </li>
-            </ul>
+                <ul className="contact-strips">
+                  <li className="contact-strip">
+                    <a
+                      href={github?.htmlUrl || `https://github.com/${GITHUB_USERNAME}`}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {github?.avatarUrl ? (
+                        <img
+                          className="contact-strip__avatar"
+                          src={github.avatarUrl}
+                          alt=""
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        <span className="contact-strip__avatar contact-strip__avatar--fallback" aria-hidden="true">
+                          {initials(GITHUB_USERNAME)}
+                        </span>
+                      )}
+                      <span className="contact-strip__body">
+                        <span className="contact-strip__kicker">GitHub</span>
+                        <span className="contact-strip__title-row">
+                          <span className="contact-strip__title">{github?.name || GITHUB_USERNAME}</span>
+                          <span className="contact-strip__desc">@{GITHUB_USERNAME}</span>
+                        </span>
+                      </span>
+                    </a>
+                  </li>
 
-            <p className="resume-link">
-              Follow my <a href="/journal/index.xml">RSS</a> feed.
-            </p>
+                  <li className="contact-strip">
+                    <a href={LINKEDIN_URL} target="_blank" rel="noopener">
+                      <span className="contact-strip__body">
+                        <span className="contact-strip__kicker">LinkedIn</span>
+                        <span className="contact-strip__title-row">
+                          <span className="contact-strip__title">Ujaan Mukherjee</span>
+                          <span className="contact-strip__desc">Computer Science undergraduate</span>
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="resume-link">
+                Follow my <a href="/journal/index.xml">RSS</a> feed.
+              </p>
+            </div>
           </section>
         </div>
       </main>

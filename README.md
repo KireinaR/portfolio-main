@@ -1,8 +1,8 @@
-# Ujaan Mukherjee — The Wanderer's Dispatch
+# Ujaan Mukherjee - The Wanderer's Dispatch
 
 A minimal, newspaper-set portfolio, built as a Next.js app (App Router). Baskerville
 (via Libre Baskerville), light (bone) / dark (true black) themes, newspaper columns.
-The Journal (blog) is Markdown, rendered at build time — no CMS, no database.
+The Journal (blog) is Markdown, rendered at build time - no CMS, no database.
 
 ## Layout
 ```
@@ -26,7 +26,7 @@ lib/
   markdown.js               # markdown -> HTML (remark/rehype), image captions
   dates.js                 # date formatting helpers
   ascii-wanderer-fragment.html  # the homepage's ASCII-art render, extracted verbatim
-journal/                   # blog posts live here — see "Writing a post" below
+journal/                   # blog posts live here - see "Writing a post" below
   <slug>/index.md          # one folder per post; drop that post's images here too
 public/                    # static assets served at the site root (images, resume.pdf, main.js)
 scripts/
@@ -36,7 +36,7 @@ scripts/
 
 ## The Wanderer (homepage)
 *Wanderer above the Sea of Fog* on the home page is **real, selectable ASCII
-text** — colored `<span>`s in the `ascii.woff2` export font, on a black plate to
+text** - colored `<span>`s in the `ascii.woff2` export font, on a black plate to
 mimic the original painting. Not an image. The markup lives in
 `lib/ascii-wanderer-fragment.html` and is inlined into the homepage at build time.
 
@@ -71,7 +71,7 @@ Add images into that same `journal/my-post/` folder. Reference them with an
 Images with alt text are automatically wrapped in a captioned `<figure>` (the
 alt text becomes the caption). The `journal/` folder is copied into
 `public/journal/` by `scripts/copy-journal-assets.mjs`, which runs automatically
-before `npm run dev` and `npm run build` — restart the dev server after adding a
+before `npm run dev` and `npm run build` - restart the dev server after adding a
 new image so it picks up the copy.
 
 Set `draft: false` to publish (draft posts are excluded from the build). Reading
@@ -83,7 +83,7 @@ time and tag pages (`/tags/<tag>/`) are computed automatically; RSS is at
 The About and Resume pages render `resume.pdf` with a custom PDF.js viewer
 (`components/PdfViewer.js`) instead of the browser's native PDF plugin, so the
 toolbar matches the site's theme. It supports zoom in/out, keyword search
-(with match highlighting and next/previous navigation), and download —
+(with match highlighting and next/previous navigation), and download -
 nothing else from pdf.js's default chrome. The pdf.js worker file is copied
 into `public/pdf.worker.min.mjs` by `scripts/copy-pdfjs-worker.mjs`.
 
@@ -100,7 +100,7 @@ npm run build
 ```
 
 ## Deploy to Vercel
-This is a standard Next.js app — Vercel detects the framework automatically with
+This is a standard Next.js app - Vercel detects the framework automatically with
 zero configuration. Two ways to deploy manually:
 - **CLI**: run `vercel` (preview) or `vercel --prod` (production) from the
   project root. Requires the [Vercel CLI](https://vercel.com/docs/cli)

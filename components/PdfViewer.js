@@ -300,7 +300,7 @@ export default function PdfViewer({ src, fileName }) {
             This document couldn&#39;t be displayed. <a href={src}>Download it</a> instead.
           </p>
         )}
-        {/* Never given React children in JSX — everything inside is rendered imperatively by pdf.js. */}
+        {/* Never given React children in JSX - everything inside is rendered imperatively by pdf.js. */}
         <div className="pdf-viewer__pages-inner" ref={pagesElRef} />
       </div>
     </div>

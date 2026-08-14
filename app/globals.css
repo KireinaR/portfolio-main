@@ -1,6 +1,6 @@
 /* ============================================================
-   Ujaan Mukherjee — The Wanderer's Dispatch
-   A newspaper-set portfolio. Vanilla CSS. Baskerville.
+   Ujaan Mukherjee - The Wanderer's Dispatch
+   A newspaper-set portfolio. Vanilla CSS. Source Serif 4.
    Two themes via [data-theme]. Multi-page.
    ============================================================ */
 
@@ -10,18 +10,18 @@
   --bg-soft: #e4ddcd;
   --text: #17130c;        /* warm near-black */
   --muted: #443c2e;       /* strong, low-strain body-secondary */
-  --faint: #544b3c;       /* labels, datelines — clearly legible, not washed out */
+  --faint: #544b3c;       /* labels, datelines - clearly legible, not washed out */
   --rule: #a99d84;        /* hairline ink */
   --rule-strong: #6a6150;
   --ink: #000000;
-  --plate: #000000;       /* image plate — always dark */
+  --plate: #000000;       /* image plate - always dark */
   --plate-text: #d9d3c4;
   --selection: #d3cab1;
 
   --maxw: 74rem;
   --pad: clamp(1.15rem, 4vw, 3rem);
-  --serif: "Libre Baskerville", Baskerville, "Baskerville Old Face",
-           "Hoefler Text", Garamond, "Times New Roman", serif;
+  --serif: "Source Serif 4", "Source Serif Pro", Georgia, "Hoefler Text",
+           Garamond, "Times New Roman", serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -48,14 +48,15 @@
 
 /* ---- Reset-ish ---- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; font-size: 112.5%; }
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.08rem);
+  font-size: clamp(1.05rem, 1rem + 0.25vw, 1.15rem);
+  letter-spacing: 0.008em;
   line-height: 1.68;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -63,6 +64,7 @@ body {
   overflow-x: hidden;
 }
 ::selection { background: var(--selection); }
+strong, b { letter-spacing: 0.02em; }
 img { max-width: 100%; height: auto; display: block; }
 
 /* ---- Wrap ---- */
@@ -88,13 +90,13 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex; align-items: center; gap: 1rem; min-height: 3rem;
 }
 .runhead__name {
-  font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--text); text-decoration: none; white-space: nowrap; font-weight: 700;
 }
 .runnav {
   margin-left: auto; display: flex; align-items: center;
   gap: clamp(0.75rem, 2.4vw, 1.6rem);
-  font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase;
+  font-size: 0.74rem; letter-spacing: 0.13em; text-transform: uppercase;
 }
 .runnav a {
   color: var(--faint); text-decoration: none;
@@ -143,7 +145,7 @@ img { max-width: 100%; height: auto; display: block; }
 .dateline {
   display: flex; justify-content: space-between; align-items: baseline;
   gap: 1rem; flex-wrap: wrap;
-  font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--faint);
   padding-bottom: 0.7rem;
   border-bottom: 1px solid var(--rule-strong);
@@ -170,16 +172,16 @@ img { max-width: 100%; height: auto; display: block; }
   text-align: center;
 }
 .nameplate--home { font-size: clamp(2rem, 7vw, 4.5rem); }
-.nameplate--page { font-size: clamp(1.75rem, 6vw, 3.25rem); }
+.nameplate--page { font-size: clamp(1.5rem, 5vw, 2.6rem); }
 .nameplate--compact { font-size: clamp(1.3rem, 3.5vw, 1.9rem); margin-bottom: clamp(0.5rem, 1.5vw, 0.8rem); }
 
 .subplate {
   display: flex; justify-content: center; align-items: center; gap: 0.9rem;
   flex-wrap: wrap;
-  font-size: clamp(0.66rem, 1.6vw, 0.78rem);
-  letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint);
-  padding-top: 0.9rem;
-  border-top: 3px double var(--rule-strong);
+  font-size: clamp(0.72rem, 1.75vw, 0.86rem);
+  letter-spacing: 0.26em; text-transform: uppercase; color: var(--faint);
+  padding-top: 0.65rem;
+  border-top: 2px double var(--rule-strong);
 }
 .subplate .dot { color: var(--rule-strong); }
 
@@ -208,61 +210,140 @@ img { max-width: 100%; height: auto; display: block; }
 .resume-link a { color: var(--text); }
 
 /* ============================================================
-   Contact cards
+   Contact layout - form on the left, socials on the right
    ============================================================ */
-.contact-cards {
-  list-style: none; margin: clamp(1.5rem, 4vw, 2.5rem) 0 0; padding: 0;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  border: 1px solid var(--rule);
+.contact-layout {
+  display: grid; grid-template-columns: 1.5fr 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+  margin-top: clamp(1rem, 3vw, 2rem);
 }
-.contact-card {
-  padding: clamp(1.5rem, 3vw, 2rem);
-  border-right: 1px solid var(--rule);
-  transition: background-color 0.3s var(--ease);
+@media (max-width: 55rem) {
+  .contact-layout { grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 2.75rem); }
 }
-.contact-card:last-child { border-right: 0; }
-.contact-card:hover { background: var(--bg-soft); }
 
-.contact-card__kicker {
+/* ============================================================
+   Contact form
+   ============================================================ */
+.contact-form { margin: 0; }
+
+.contact-form__kicker {
   font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--faint); font-weight: 700; margin: 0 0 0.9rem;
-}
-.contact-card__title { font-weight: 700; font-size: 1.1rem; line-height: 1.3; margin: 0; word-break: break-word; }
-.contact-card__desc { color: var(--muted); font-size: 0.88rem; line-height: 1.5; margin: 0.3rem 0 0; }
-
-.contact-card__who { display: flex; align-items: center; gap: 0.75rem; margin: 0 0 0.6rem; }
-.contact-card__avatar {
-  width: 2.75rem; height: 2.75rem; border-radius: 50%; flex: none;
-  border: 1px solid var(--rule-strong); object-fit: cover;
-}
-.contact-card__avatar--fallback {
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-weight: 700; font-size: 1rem;
-  color: var(--faint); background: var(--bg-soft);
+  color: var(--faint); font-weight: 700; margin: 0 0 1rem;
 }
 
-.contact-card__link {
-  display: inline-block; margin-top: 1.1rem;
-  font-size: 0.8rem; letter-spacing: 0.03em; color: var(--text);
-  text-decoration: none; border-bottom: 1px solid var(--rule-strong);
-  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+.contact-form__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(0.85rem, 2vw, 1.25rem);
 }
-.contact-card__link:hover { color: var(--muted); border-color: var(--muted); }
+.contact-form__field { display: flex; flex-direction: column; gap: 0.4rem; }
+.contact-form__field--full { grid-column: 1 / -1; }
 
-.contact-card__button {
-  display: inline-block; margin-top: 1.1rem;
+.contact-form__label {
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--faint); font-weight: 700;
+}
+
+.contact-form__input, .contact-form__textarea {
+  font-family: var(--serif); font-size: 0.95rem; color: var(--text);
+  background: transparent; border: none; border-radius: 0;
+  border-bottom: 1px solid var(--rule-strong);
+  padding: 0.5rem 0.05rem; width: 100%; box-sizing: border-box;
+  transition: border-color 0.3s var(--ease);
+}
+.contact-form__input:focus, .contact-form__textarea:focus {
+  outline: none; border-bottom-color: var(--text);
+}
+.contact-form__textarea { resize: vertical; min-height: 4.5rem; line-height: 1.5; }
+
+.contact-form__textarea-wrap { position: relative; }
+
+.contact-form__counter {
+  position: absolute; top: 0.4rem; right: 0;
+  font-size: 0.66rem; letter-spacing: 0.02em; color: var(--faint);
+  background: var(--bg); padding: 0.05rem 0 0.05rem 0.35rem;
+  pointer-events: none;
+}
+.contact-form__counter--invalid { color: var(--text); font-weight: 700; }
+
+.contact-form__honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.contact-form__actions {
+  display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+
+.contact-form__submit {
+  display: inline-block;
   appearance: none; cursor: pointer;
   border: 1px solid var(--rule-strong); background: transparent;
   color: var(--text); font-family: var(--serif); font-size: 0.85rem;
   padding: 0.5rem 1rem;
   transition: color 0.3s var(--ease), background-color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
-.contact-card__button:hover { color: var(--bg); background: var(--text); border-color: var(--text); }
+.contact-form__submit:hover { color: var(--bg); background: var(--text); border-color: var(--text); }
+.contact-form__submit:disabled { opacity: 0.4; cursor: not-allowed; }
+.contact-form__submit:disabled:hover { color: var(--text); background: transparent; border-color: var(--rule-strong); }
 
-@media (max-width: 48rem) {
-  .contact-cards { grid-template-columns: 1fr; }
-  .contact-card { border-right: 0; border-bottom: 1px solid var(--rule); }
-  .contact-card:last-child { border-bottom: 0; }
+.contact-form__status { font-size: 0.85rem; color: var(--muted); margin: 0; }
+.contact-form__status--error { color: var(--text); font-weight: 700; }
+.contact-form__status--sent { font-size: 0.95rem; color: var(--text); }
+
+@media (max-width: 40rem) {
+  .contact-form__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   Contact strips - thin horizontal rows for GitHub / LinkedIn
+   ============================================================ */
+.contact-social {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+  max-width: 18rem;
+}
+
+.contact-strips {
+  list-style: none; margin: 0.9rem 0 0; padding: 0;
+}
+.contact-strip { border-top: 1px solid var(--rule); }
+.contact-strip a {
+  display: flex; align-items: center; gap: 0.7rem;
+  margin: 0 -0.6rem;
+  padding: 0.75rem 0.6rem;
+  text-decoration: none; color: var(--text);
+  transition: background-color 0.3s var(--ease);
+}
+.contact-strip a:hover { background: var(--bg-soft); }
+
+.contact-strip__avatar {
+  width: 2rem; height: 2rem; border-radius: 50%; flex: none;
+  border: 1px solid var(--rule-strong); object-fit: cover;
+}
+.contact-strip__avatar--fallback {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-weight: 700; font-size: 0.82rem;
+  color: var(--faint); background: var(--bg-soft);
+}
+
+.contact-strip__body {
+  display: flex; flex-direction: column; gap: 0.3rem;
+  flex: 1; min-width: 0;
+}
+.contact-strip__kicker {
+  font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--faint); font-weight: 700;
+}
+.contact-strip__title-row {
+  display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap;
+}
+.contact-strip__title {
+  font-weight: 700; font-size: 0.92rem;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.contact-strip__desc { font-size: 0.78rem; color: var(--muted); }
+
+@media (max-width: 30rem) {
+  .contact-strip__kicker { width: auto; }
 }
 
 .prose p { margin: 0 0 1.15rem; }
@@ -290,8 +371,8 @@ img { max-width: 100%; height: auto; display: block; }
 .pullquote {
   font-size: clamp(1.35rem, 1rem + 1.6vw, 2rem);
   font-style: italic; line-height: 1.3; color: var(--text);
-  border-top: 3px double var(--rule-strong);
-  border-bottom: 3px double var(--rule-strong);
+  border-top: 2px double var(--rule-strong);
+  border-bottom: 2px double var(--rule-strong);
   padding: 1.1rem 0; margin: 2rem 0; text-align: center;
   break-inside: avoid;
 }
@@ -301,7 +382,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Rules */
 .rule-thin { border: 0; border-top: 1px solid var(--rule); margin: clamp(2rem,5vw,3.25rem) 0; }
-.rule-double { border: 0; border-top: 3px double var(--rule-strong); margin: clamp(2rem,5vw,3.25rem) 0; }
+.rule-double { border: 0; border-top: 2px double var(--rule-strong); margin: clamp(2rem,5vw,3.25rem) 0; }
 
 /* ============================================================
    Front-page grid
@@ -402,7 +483,7 @@ img { max-width: 100%; height: auto; display: block; }
 .index-list .desc { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
 
 /* ============================================================
-   Works — dispatches
+   Works - dispatches
    ============================================================ */
 .dispatches {
   column-width: 22rem;
@@ -415,7 +496,7 @@ img { max-width: 100%; height: auto; display: block; }
   border-top: 1px solid var(--rule);
   margin-bottom: 0.2rem;
 }
-.dispatch:first-child { border-top: 3px double var(--rule-strong); }
+.dispatch:first-child { border-top: 2px double var(--rule-strong); }
 .dispatch__kicker {
   font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--faint); font-weight: 700; margin: 0 0 0.5rem;
@@ -562,7 +643,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .colophon {
   margin-top: clamp(2.5rem, 6vw, 4.5rem);
-  border-top: 3px double var(--rule-strong);
+  border-top: 2px double var(--rule-strong);
   padding: clamp(1.75rem, 4vw, 2.75rem) 0 clamp(2.5rem, 5vw, 3.5rem);
 }
 .colophon__contact {
@@ -612,7 +693,7 @@ img { max-width: 100%; height: auto; display: block; }
   }
   .index-list a { grid-template-columns: auto 1fr; }
   .index-list .desc { display: none; }
-  .dateline { font-size: 0.6rem; letter-spacing: 0.1em; }
+  .dateline { font-size: 0.7rem; letter-spacing: 0.1em; }
 }
 
 /* ---- Reduced motion ---- */
@@ -624,7 +705,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 
 /* ============================================================
-   Blog — Journal (Hugo-generated)
+   Blog - Journal (Hugo-generated)
    ============================================================ */
 .post-headline {
   font-weight: 700; letter-spacing: -0.015em; line-height: 1.06;
@@ -670,7 +751,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .post-body blockquote p { margin: 0; }
 .post-body img { margin: 1.8rem auto; border: 1px solid var(--rule-strong); }
-.post-body hr { border: 0; border-top: 3px double var(--rule-strong); margin: 2.5rem 0; }
+.post-body hr { border: 0; border-top: 2px double var(--rule-strong); margin: 2.5rem 0; }
 
 /* Figure + caption (from markdown image alt text, via render-image hook) */
 .post-body figure { margin: 1.8rem 0; }
@@ -736,7 +817,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* Journal index list */
 .journal-list { list-style: none; margin: 0; padding: 0; }
 .journal-entry { padding: 1.5rem 0; border-top: 1px solid var(--rule); }
-.journal-entry:first-child { border-top: 3px double var(--rule-strong); }
+.journal-entry:first-child { border-top: 2px double var(--rule-strong); }
 .journal-entry:last-child { border-bottom: 1px solid var(--rule); }
 .journal-entry__title {
   display: inline-block; text-decoration: none; color: var(--text);
@@ -765,12 +846,12 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* The wall: a wrapping flex row so cards scatter across the full width
    immediately (not a masonry column that piles vertically before spreading
-   out). Each card is sized to fit its own content — `width: fit-content`
+   out). Each card is sized to fit its own content - `width: fit-content`
    plus a `nowrap` byline means the byline is never allowed to break, and
    the card grows only as wide as that line (or the message's capped width,
    whichever is larger) needs. Per-card `align-self` (set inline, hashed from
    the entry's id) lets cards in the same row sit at genuinely different
-   heights — chaotic to look at, systematic and fully reproducible
+   heights - chaotic to look at, systematic and fully reproducible
    underneath, not actually random (only the display *order* is randomized,
    in app/guestbook/page.js). */
 .guestbook-wall {
@@ -789,7 +870,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .guestbook-card:hover { border-color: var(--rule-strong); }
 .guestbook-card--alt { background: var(--bg); }
-.guestbook-card--featured { border-top: 3px double var(--rule-strong); }
+.guestbook-card--featured { border-top: 2px double var(--rule-strong); }
 
 .guestbook-card__who {
   display: flex; align-items: flex-start; gap: 0.4rem; margin-bottom: 0.4rem;

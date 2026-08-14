@@ -13,7 +13,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (account) {
         token.provider = account.provider;
         token.uid = `${account.provider}:${account.providerAccountId}`;
-        // GitHub's handle (distinct from the display name) — Google has
+        // GitHub's handle (distinct from the display name) - Google has
         // no equivalent, so this stays unset for Google sign-ins.
         token.username = account.provider === 'github' ? profile?.login : undefined;
       }

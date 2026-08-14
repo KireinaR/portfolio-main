@@ -1,5 +1,5 @@
 /* ============================================================
-   Ujaan Mukherjee — portfolio interactions
+   Ujaan Mukherjee - portfolio interactions
    Theme toggle, mobile nav, journal entries fetch.
    ============================================================ */
 (function () {
@@ -9,7 +9,7 @@
 
   /* ---------- Theme toggle ----------
      The server picks the initial theme from the `theme` cookie (default
-     dark), so there's no client-side flash to fix here — this just handles
+     dark), so there's no client-side flash to fix here - this just handles
      the click and keeps the cookie in sync for the next navigation/reload. */
   var toggle = document.querySelector('.theme-toggle');
   function applyTheme(theme) {

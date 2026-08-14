@@ -4,7 +4,7 @@ import { createEntry, getRateLimitRemaining, MESSAGE_MAX_LENGTH } from '@/lib/gu
 import { getClientIp, isRateLimited } from '@/lib/rateLimit';
 
 export async function POST(request) {
-  // Coarse per-IP throttle in front of everything else — the real limit is
+  // Coarse per-IP throttle in front of everything else - the real limit is
   // the per-user, Mongo-backed one below; this just caps request volume from
   // a single source regardless of sign-in state.
   const ip = getClientIp(request);

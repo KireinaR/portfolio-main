@@ -9,7 +9,7 @@ function initials(name) {
 
 // Small deterministic hash (not random) so a card's placement/treatment is
 // stable across renders/reloads and independent of the shuffled display
-// order — chaotic to look at, systematic underneath.
+// order - chaotic to look at, systematic underneath.
 function hash(str) {
   let h = 0;
   for (let i = 0; i < str.length; i++) {
