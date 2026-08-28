@@ -3,10 +3,17 @@ import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'Works - Ujaan Mukherjee',
-  description: "Selected works by Ujaan Mukherjee: ARGUS, a physics simulation, an air-bases API, a thermal camera, and more.",
+  description: "Selected works by Ujaan Mukherjee: SOLAN, a LAN file-transfer tool, ARGUS, a physics simulation, an air-bases API, a thermal camera, and more.",
 };
 
 const PROJECTS = [
+  {
+    kicker: 'Systems & Networking',
+    href: 'https://solan.ujaanmukherjee.com/',
+    title: 'SOLAN',
+    desc: "Send Over LAN: a command-line tool that moves files directly between machines on the same network, no cloud, no accounts, no server in the loop, just a direct TCP transfer with SHA-256 verification on arrival.",
+    host: 'solan.ujaanmukherjee.com',
+  },
   {
     kicker: 'Machine Vision',
     href: 'https://github.com/KireinaR/argus',
